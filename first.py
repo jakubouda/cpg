@@ -1,6 +1,9 @@
+#
+# První úloha podle e-learningu
+#
 
 ###
-# Funkce sudy_nebo_lichy vrací True, pokud parametr je sudý, False, pokud parametr je lichý
+# Funkce sudy_nebo_lichy vrací True, pokud je parametr sudý, False, pokud je parametr lichý
 ###
 def sudy_nebo_lichy(cislo):
     if cislo % 2 == 0:
