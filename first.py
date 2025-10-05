@@ -7,15 +7,12 @@
 ###
 def sudy_nebo_lichy(cislo):
     if cislo % 2 == 0:
-        return True
+        return "sude"
     else:
-        return False
+        return "liche"
 
 
 if __name__ == "__main__":
     cislo = input("Zadejte cislo:" )
     cislo = int(cislo)
-    if sudy_nebo_lichy(cislo):
-        print(f"Cislo {cislo} je sude.")
-    else:
-        print(f"Cislo {cislo} je liche.")
+    print(f"Cislo {cislo} je {sudy_nebo_lichy(cislo)}.")
