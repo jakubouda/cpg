@@ -51,19 +51,35 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
         case "střelec":
             if(abs(cilova_pozice[0] - pozice[0]) == abs(cilova_pozice[1] - pozice[1])):
                 for y in obsazene_pozice:
-                    if(pozice[0] < y[0] < cilova_pozice[0]) and pozice[0] - y[0] == pozice[1] - y[1]:
-                        return False
-                    elif(pozice[0] > y[0] > cilova_pozice[0]) and pozice[0] - y[0] == pozice[1] - y[1]:
-                        return False
+                    if abs(y[0] - pozice[0]) == abs(y[1] - pozice[1]):
+                        if (min(pozice[0], cilova_pozice[0]) < y[0] < max(pozice[0], cilova_pozice[0])
+                        and min(pozice[1], cilova_pozice[1]) < y[1] < max(pozice[1], cilova_pozice[1])):
+                            return False
                 return True
         case "dáma":
-            print("ověřování dáma")
-
+            if pozice[0] == cilova_pozice[0]:
+                for y in obsazene_pozice:
+                    if (y[0] == pozice[0] and y != pozice):
+                        if(pozice[1] - y[1] < pozice[1] - cilova_pozice[1]):
+                            return False
+                return True
+            elif pozice[1] == cilova_pozice[1]:
+                for y in obsazene_pozice:
+                    if (y[1] == pozice[1] and y != pozice):
+                        if(pozice[0] - y[0] < pozice[0] - cilova_pozice[0]):
+                            return False
+                return True
+            elif(abs(cilova_pozice[0] - pozice[0]) == abs(cilova_pozice[1] - pozice[1])):
+                for y in obsazene_pozice:
+                    if abs(y[0] - pozice[0]) == abs(y[1] - pozice[1]):
+                        if (min(pozice[0], cilova_pozice[0]) < y[0] < max(pozice[0], cilova_pozice[0])
+                        and min(pozice[1], cilova_pozice[1]) < y[1] < max(pozice[1], cilova_pozice[1])):
+                            return False
+                return True
         case "král":
-            print("ověřování král")
-
-
-
+            if abs(cilova_pozice[0] - pozice[0]) <= 1 and abs(cilova_pozice[1] - pozice[1]) <= 1:
+                return True
+            
     return False
 
 
@@ -75,7 +91,7 @@ if __name__ == "__main__":
     dama = {"typ": "dáma", "pozice": (8, 3)}
     kral = {"typ": "král", "pozice": (1, 4)}
     obsazene_pozice = {(2, 2), (8, 2),(3, 3), (5, 4), (8, 3), (8, 8), (6, 3), (1, 4)}
-    """
+
     print(je_tah_mozny(pesec, (3, 2), obsazene_pozice))  # True
     print(je_tah_mozny(pesec, (4, 2), obsazene_pozice))  # True, při prvním tahu, může pěšec jít o 2 pole dopředu
     print(je_tah_mozny(pesec, (5, 2), obsazene_pozice))  # False, protože pěšec se nemůže hýbat o tři pole vpřed (pokud jeho výchozí pozice není v prvním řádku)
@@ -85,22 +101,7 @@ if __name__ == "__main__":
     print(je_tah_mozny(jezdec, (5, 4), obsazene_pozice))  # False, tato pozice je obsazená jinou figurou
     print(je_tah_mozny(jezdec, (1, 2), obsazene_pozice))  # True
     print(je_tah_mozny(jezdec, (9, 3), obsazene_pozice))  # False, je to pozice mimo šachovnici
-    """
-    print(je_tah_mozny(strelec,(4, 1), obsazene_pozice)) #True
-    print(je_tah_mozny(strelec,(8, 5), obsazene_pozice)) #True
-    print(je_tah_mozny(strelec,(8, 1), obsazene_pozice)) #True
-    print(je_tah_mozny(strelec,(4, 2), obsazene_pozice)) #False
-    print(je_tah_mozny(strelec,(1, 8), obsazene_pozice)) #False
-    print(je_tah_mozny(strelec,(5, 4), obsazene_pozice)) #False
-    """
+
     print(je_tah_mozny(dama, (8, 1), obsazene_pozice))  # False, dámě v cestě stojí jiná figura
     print(je_tah_mozny(dama, (1, 3), obsazene_pozice))  # False, dámě v cestě stojí jiná figura
     print(je_tah_mozny(dama, (3, 8), obsazene_pozice))  # True
-    
-    """
-    #print(je_tah_mozny(pesec, (3, 2), obsazene_pozice))
-    #je_tah_mozny(jezdec, (4, 4), obsazene_pozice)
-    #je_tah_mozny(vez, (8, 1), obsazene_pozice)
-    #je_tah_mozny(strelec, (4, 4), obsazene_pozice)
-    #je_tah_mozny(dama, (8, 1), obsazene_pozice)
-    #je_tah_mozny(kral, (4, 4), obsazene_pozice)
