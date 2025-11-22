@@ -49,8 +49,13 @@ def je_tah_mozny(figurka, cilova_pozice, obsazene_pozice):
                             return False
                 return True
         case "střelec":
-            print("ověřování střelec")
-
+            if(abs(cilova_pozice[0] - pozice[0]) == abs(cilova_pozice[1] - pozice[1])):
+                for y in obsazene_pozice:
+                    if(pozice[0] < y[0] < cilova_pozice[0]) and pozice[0] - y[0] == pozice[1] - y[1]:
+                        return False
+                    elif(pozice[0] > y[0] > cilova_pozice[0]) and pozice[0] - y[0] == pozice[1] - y[1]:
+                        return False
+                return True
         case "dáma":
             print("ověřování dáma")
 
@@ -81,11 +86,12 @@ if __name__ == "__main__":
     print(je_tah_mozny(jezdec, (1, 2), obsazene_pozice))  # True
     print(je_tah_mozny(jezdec, (9, 3), obsazene_pozice))  # False, je to pozice mimo šachovnici
     """
-    print(je_tah_mozny(vez, (1, 8), obsazene_pozice)) #True
-    print(je_tah_mozny(vez, (8, 1), obsazene_pozice)) #False
-    print(je_tah_mozny(vez, (8, 2), obsazene_pozice)) #False
-    print(je_tah_mozny(vez, (8, 4), obsazene_pozice)) #True
-    print(je_tah_mozny(vez, (6, 8), obsazene_pozice)) #True
+    print(je_tah_mozny(strelec,(4, 1), obsazene_pozice)) #True
+    print(je_tah_mozny(strelec,(8, 5), obsazene_pozice)) #True
+    print(je_tah_mozny(strelec,(8, 1), obsazene_pozice)) #True
+    print(je_tah_mozny(strelec,(4, 2), obsazene_pozice)) #False
+    print(je_tah_mozny(strelec,(1, 8), obsazene_pozice)) #False
+    print(je_tah_mozny(strelec,(5, 4), obsazene_pozice)) #False
     """
     print(je_tah_mozny(dama, (8, 1), obsazene_pozice))  # False, dámě v cestě stojí jiná figura
     print(je_tah_mozny(dama, (1, 3), obsazene_pozice))  # False, dámě v cestě stojí jiná figura
