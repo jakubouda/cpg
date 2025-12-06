@@ -13,12 +13,13 @@ def spocitej_statistiku(text:str):
     pocet_slov = 0
     pocet_znaku = len(text)
     
-    radky = text.split("\n")
+    radky = text.strip().split("\n")
     for radek in radky:
         pocet_radku += 1
-        slova = radek.split(" ")
+        slova = radek.strip().split(" ")
         for slovo in slova:
-            pocet_slov += 1
+            if len(slovo) > 0:
+                pocet_slov += 1
 
     return pocet_radku, pocet_slov, pocet_znaku
 
