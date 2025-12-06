@@ -7,13 +7,18 @@ import sys
 # počet slov v textu (slovo je sekvence znaků oddělená mezerami nebo koncem řádku)
 # počet znaků v textu (včetně mezer a konců řádků)
 
-def spocitej_statistiku(text):
+def spocitej_statistiku(text:str):
 
     pocet_radku = 0
     pocet_slov = 0
-    pocet_znaku = 0
-
-    # Vaše řešení zde
+    pocet_znaku = len(text)
+    
+    radky = text.split("\n")
+    for radek in radky:
+        pocet_radku += 1
+        slova = radek.split(" ")
+        for slovo in slova:
+            pocet_slov += 1
 
     return pocet_radku, pocet_slov, pocet_znaku
 
